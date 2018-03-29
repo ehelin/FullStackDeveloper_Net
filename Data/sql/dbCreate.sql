@@ -1,5 +1,5 @@
 ﻿--1) create schema 
-create schema myAwesomeDatabaseLocationSchema
+create schema myAwesomeDatabaseLocationSchema  
 
 --2) create location table
 create table MyAwesomeDatabase.myAwesomeDatabaseLocationSchema.[location] (
