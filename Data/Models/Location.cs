@@ -8,11 +8,6 @@ namespace Data.Models
     [DataContract]
     public partial class Location
     {
-        public Location()
-        {
-            LocationDetails = new HashSet<LocationDetails>();
-        }
-
         [DataMember]
         public int LocationiId { get; set; }
         [DataMember]
@@ -25,8 +20,7 @@ namespace Data.Models
         public DateTime? Modified { get; set; }
         [DataMember]
         public string ModifiedBy { get; set; }
-
         [DataMember]
-        public ICollection<LocationDetails> LocationDetails { get; set; }
+        public LocationDetails LocationDetails { get; set; }
     }
 }

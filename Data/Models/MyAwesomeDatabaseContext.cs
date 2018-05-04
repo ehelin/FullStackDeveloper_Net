@@ -78,8 +78,7 @@ namespace Data.Models
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Location)
-                    .WithMany(p => p.LocationDetails)
-                    .HasForeignKey(d => d.LocationId)
+                    .WithOne(p => p.LocationDetails)
                     .HasConstraintName("FK_locationDetails_location");
             });
         }

@@ -28,30 +28,49 @@ namespace WebApi.Controllers
         [HttpGet("{id}", Name = "Get")]
         public Location Get(int id)
         {
-            var result = dbContext.Location.FirstOrDefault(x => x.LocationiId == id);
+            var location = dbContext.Location.FirstOrDefault(x => x.LocationiId == id);
+            var test = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == id);
+            location.LocationDetails = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == id);
 
-            return result;
+            return location;
         }
-        
+
         // POST: api/Locations
         [HttpPost]
         public void Post([FromBody]Location location)
         {
-            var myLocation = location;
+            dbContext.Location.Update(location);
+            dbContext.SaveChanges();
+
+            dbContext.LocationDetails.Update(location.LocationDetails);
+            dbContext.SaveChanges();
         }
-        
+
         // PUT: api/Locations/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]Location location)
         {
-            var myLocation = location;
+            dbContext.Location.Update(location);
+            dbContext.SaveChanges();
+
+            dbContext.LocationDetails.Update(location.LocationDetails);
+            dbContext.SaveChanges();
         }
-        
-        // DELETE: api/ApiWithActions/5
+
+        // DELETE: api/Locations/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var deleteId = id;
+            var location = dbContext.Location.FirstOrDefault(x => x.LocationiId == id);
+            var locationDetails = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == id);
+
+            dbContext.Attach(locationDetails);
+            dbContext.Remove(locationDetails);
+            dbContext.SaveChanges();
+
+            dbContext.Attach(location);
+            dbContext.Remove(location);
+            dbContext.SaveChanges();
         }
     }
 }
