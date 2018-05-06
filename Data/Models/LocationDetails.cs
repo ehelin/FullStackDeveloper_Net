@@ -17,8 +17,5 @@ namespace Data.Models
         public string Food { get; set; }
         [DataMember]
         public string People { get; set; }
-
-        [DataMember]
-        public Location Location { get; set; }
     }
 }

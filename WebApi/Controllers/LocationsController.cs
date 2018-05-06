@@ -29,7 +29,6 @@ namespace WebApi.Controllers
         public Location Get(int id)
         {
             var location = dbContext.Location.FirstOrDefault(x => x.LocationiId == id);
-            var test = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == id);
             location.LocationDetails = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == id);
 
             return location;
@@ -39,10 +38,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public void Post([FromBody]Location location)
         {
-            dbContext.Location.Update(location);
-            dbContext.SaveChanges();
-
-            dbContext.LocationDetails.Update(location.LocationDetails);
+            dbContext.Location.Add(location);
             dbContext.SaveChanges();
         }
 
@@ -50,10 +46,15 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]Location location)
         {
-            dbContext.Location.Update(location);
-            dbContext.SaveChanges();
+            var existingLocation = dbContext.Location.FirstOrDefault(x => x.LocationiId == id);
+            existingLocation.LocationDetails = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == id);
 
-            dbContext.LocationDetails.Update(location.LocationDetails);
+            existingLocation.LocationName = location.LocationName;
+            existingLocation.LocationDetails.Food = location.LocationDetails.Food;
+            existingLocation.LocationDetails.People = location.LocationDetails.People;
+            existingLocation.LocationDetails.Weather = location.LocationDetails.Weather;
+
+            dbContext.Location.Update(existingLocation);
             dbContext.SaveChanges();
         }
 
