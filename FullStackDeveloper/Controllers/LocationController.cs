@@ -8,24 +8,15 @@ using FullStackDeveloper.Models;
 
 namespace FullStackDeveloper.Controllers
 {
-    public class HomeController : Controller
+    public class LocationController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Details()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 
