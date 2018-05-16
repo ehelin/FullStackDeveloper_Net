@@ -35,7 +35,6 @@ namespace Web
 
             return webLocations;
         }
-
         private async Task<HttpResponseMessage> GET(string subUrl, string parameter = "")
         {
             HttpClient client = new HttpClient();
