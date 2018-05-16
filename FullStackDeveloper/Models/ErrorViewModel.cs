@@ -1,6 +1,6 @@
 using System;
 
-namespace FullStackDeveloper.Models
+namespace Web.Models
 {
     public class ErrorViewModel
     {

@@ -1,7 +1,14 @@
-﻿@{
+﻿@model LocationsModel
+@{
     ViewData["Title"] = "Location Summary";
 }
 
 <p>Location Summary</p>
+<ul>
+    @foreach (LocationModel location in Model.Locations)
+    {
+        <li>@Html.ActionLink(location.LocationName, "Details", "Location", new { id = @location.LocationiId }, null)</li>
+    }
+</ul>
 <br/>
 @Html.ActionLink("Details", "Details", "Location")

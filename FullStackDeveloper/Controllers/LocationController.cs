@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using FullStackDeveloper.Models;
+using Web.Models;
 using Microsoft.Extensions.Configuration;
 
-namespace FullStackDeveloper.Controllers
+namespace Web.Controllers
 {
     public class LocationController : Controller
     {
@@ -17,12 +17,12 @@ namespace FullStackDeveloper.Controllers
 
         public IActionResult Index()
         {
-            //api/Locations
-            // TODO - take result from LocationHttpClient and convert to model/view - inside model?
-            return View();
+            var model = this.client.GetLocations().Result;
+
+            return View(model);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
             return View();
         }

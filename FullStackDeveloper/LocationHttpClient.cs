@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DataModels = Data.Models;
-using WebModels = FullStackDeveloper.Models;
+using WebModels = Web.Models;
 using System.Net.Http;
+using Newtonsoft.Json;
 
-namespace FullStackDeveloper
+namespace Web
 {
     public class LocationHttpClient
     {
@@ -17,16 +15,25 @@ namespace FullStackDeveloper
             this.host = host;
         }
 
-        public async Task<List<WebModels.Location>> GetLocations()
+        public async Task<WebModels.LocationsModel> GetLocations()
         {
-            HttpResponseMessage response = await GET("api/Locations");
+            HttpResponseMessage response = await GET(Constants.ENDPOINT_GET_LOCATIONS);
             var result = await response.Content.ReadAsStringAsync();
-            
-            // TODO - convert result to List of data.locations
-            // TODO - convert data.locations to web.locations
-            // TODO - return result
+            DataModels.Location[] dataLocations = JsonConvert.DeserializeObject<DataModels.Location[]>(result);
+            WebModels.LocationsModel webLocations = new WebModels.LocationsModel();
+            webLocations.Locations = new WebModels.LocationModel[dataLocations.Length];
 
-            return null;
+            for (int i=0; i< dataLocations.Length; i++)
+            {
+                WebModels.LocationModel webLocation = new WebModels.LocationModel();
+
+                webLocation.LocationiId = dataLocations[i].LocationiId;
+                webLocation.LocationName = dataLocations[i].LocationName;
+
+                webLocations.Locations[i] = webLocation;
+            }
+
+            return webLocations;
         }
 
         private async Task<HttpResponseMessage> GET(string subUrl, string parameter = "")

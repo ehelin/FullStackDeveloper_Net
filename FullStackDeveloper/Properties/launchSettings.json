@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "FullStackDeveloper": {
+    "Web": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

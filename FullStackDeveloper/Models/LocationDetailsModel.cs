@@ -1,6 +1,6 @@
-﻿namespace FullStackDeveloper.Models
+﻿namespace Web.Models
 {
-    public partial class LocationDetails
+    public partial class LocationDetailsModel
     {
         public int LocationDetailId { get; set; }
         public int? LocationId { get; set; }

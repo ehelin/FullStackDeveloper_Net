@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 
-namespace FullStackDeveloper
+namespace Web
 {
     public class Utilities
     {
