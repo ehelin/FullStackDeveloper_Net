@@ -1,7 +1,41 @@
-﻿@{
+﻿@model LocationModel
+@{
     ViewData["Title"] = "Location Details";
 }
 
-<p>Location Details</p>
+@{bool modelLocationNameExists = Model != null && !string.IsNullOrEmpty(Model.LocationName);}
+@{bool modelWeatherExists = Model != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.Weather);}
+@{bool modelPeopleExists = Model != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.People);}
+@{bool modelFoodExists = Model != null && Model.LocationDetails != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.Food);}
+
+@using (Html.BeginForm("DetailsPost", "Location", FormMethod.Post))
+{
+    <p>Location Details</p>
+    <label>Location Name</label>
+    @Html.TextBox("Model.LocationName",
+                      modelLocationNameExists ? Model.LocationName : null,
+                      modelLocationNameExists ? new { @readonly = "readonly" } : null)
+    <br />
+    <label>Weather</label>
+    @Html.TextBox("Model.LocationDetails.Weather",
+                      modelWeatherExists ? Model.LocationDetails.Weather : null,
+                      modelWeatherExists ? new { @readonly = "readonly" } : null)
+    <br />
+    <label>People</label>
+    @Html.TextBox("Model.LocationDetails.People",
+                      modelPeopleExists ? Model.LocationDetails.People : null,
+                      modelPeopleExists ? new { @readonly = "readonly" } : null)
+    <br />
+    <label>Food</label>
+    @Html.TextBox("Model.LocationDetails.Food",
+                      modelFoodExists ? Model.LocationDetails.Food : null,
+                      modelFoodExists ? new { @readonly = "readonly" } : null)
+    <br />
+    @if (!modelLocationNameExists)
+    {
+        <input type="submit" value="Submit" />
+    }
+}
+<br />
 <br />
 @Html.ActionLink("Summary", "Index", "Location")

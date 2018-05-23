@@ -1,14 +1,37 @@
 ﻿using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 namespace Web.Models
 {
+    [DataContract]
     public partial class LocationModel
     {
         [DataMember]
-        public int LocationiId { get; set; }
+        public int LocationiId { get; set; }                            // add as hidden field
+
         [DataMember]
-        public string LocationName { get; set; }
+        [Display(Name = "Location Name")]
+        public string LocationName { get; set; }                        // add as html label/input (use [Display(Name="Name")])
+
         [DataMember]
         public LocationDetailsModel LocationDetails { get; set; }
+
+        public LocationModel() { }
+
+        public LocationModel(Data.Models.Location location)
+        {
+            this.LocationiId = location.LocationiId;
+            this.LocationName = location.LocationName;
+
+            if (location.LocationDetails != null)
+            {
+                this.LocationDetails = new LocationDetailsModel();
+
+                this.LocationDetails.Food = location.LocationDetails.Food;
+                this.LocationDetails.People = location.LocationDetails.People;
+                this.LocationDetails.Weather = location.LocationDetails.Weather;
+                this.LocationDetails.LocationDetailId = location.LocationDetails.LocationDetailId;
+            }
+        }
     }
 }

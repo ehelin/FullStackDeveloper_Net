@@ -18,23 +18,29 @@ namespace Web
         public async Task<WebModels.LocationsModel> GetLocations()
         {
             HttpResponseMessage response = await GET(Constants.ENDPOINT_GET_LOCATIONS);
+
             var result = await response.Content.ReadAsStringAsync();
             DataModels.Location[] dataLocations = JsonConvert.DeserializeObject<DataModels.Location[]>(result);
-            WebModels.LocationsModel webLocations = new WebModels.LocationsModel();
-            webLocations.Locations = new WebModels.LocationModel[dataLocations.Length];
 
-            for (int i=0; i< dataLocations.Length; i++)
-            {
-                WebModels.LocationModel webLocation = new WebModels.LocationModel();
-
-                webLocation.LocationiId = dataLocations[i].LocationiId;
-                webLocation.LocationName = dataLocations[i].LocationName;
-
-                webLocations.Locations[i] = webLocation;
-            }
-
+            WebModels.LocationsModel webLocations = new WebModels.LocationsModel(dataLocations);
+            
             return webLocations;
         }
+
+        public async Task<WebModels.LocationModel> GetLocationDetails(int locationId)
+        {
+            string url = Constants.ENDPOINT_GET_LOCATION_DETAILS + "/" + locationId.ToString();
+
+            HttpResponseMessage response = await GET(url);
+
+            var result = await response.Content.ReadAsStringAsync();
+            DataModels.Location dataLocation = JsonConvert.DeserializeObject<DataModels.Location>(result);
+
+            WebModels.LocationModel webLocation = new WebModels.LocationModel(dataLocation);
+
+            return webLocation;
+        }
+
         private async Task<HttpResponseMessage> GET(string subUrl, string parameter = "")
         {
             HttpClient client = new HttpClient();

@@ -21,9 +21,23 @@ namespace Web.Controllers
 
             return View(model);
         }
-        public IActionResult Details(int id)
+        public IActionResult Details(int? id = null)
         {
-            return View();
+            LocationModel model = new LocationModel(); 
+
+            if (id != null && id > 0)
+            {
+                model = this.client.GetLocationDetails(id ?? 0).Result;
+            }
+            
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult DetailsPost(LocationModel model)
+        {
+            // TODO - implemet this to save the updated model and return to the summary screen
+
+            return null;
         }
         public IActionResult Error()
         {

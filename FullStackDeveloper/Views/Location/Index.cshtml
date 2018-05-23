@@ -10,5 +10,4 @@
         <li>@Html.ActionLink(location.LocationName, "Details", "Location", new { id = @location.LocationiId }, null)</li>
     }
 </ul>
-<br/>
-@Html.ActionLink("Details", "Details", "Location")
+<input type="button" value="New" onclick="location.href='@Url.Action("Details", "Location")'" />
