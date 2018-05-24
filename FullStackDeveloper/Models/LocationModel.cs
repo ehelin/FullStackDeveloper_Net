@@ -33,5 +33,24 @@ namespace Web.Models
                 this.LocationDetails.LocationDetailId = location.LocationDetails.LocationDetailId;
             }
         }
+
+        public Data.Models.Location GetDataModel()
+        {
+            Data.Models.Location dataLocation = new Data.Models.Location();
+
+            dataLocation.LocationiId = this.LocationiId;
+            dataLocation.LocationName = this.LocationName;
+
+            if (this.LocationDetails != null)
+            {
+                dataLocation.LocationDetails = new Data.Models.LocationDetails();
+                dataLocation.LocationDetails.LocationDetailId = this.LocationDetails.LocationDetailId;
+                dataLocation.LocationDetails.Food = this.LocationDetails.Food;
+                dataLocation.LocationDetails.People = this.LocationDetails.People;
+                dataLocation.LocationDetails.Weather = this.LocationDetails.Weather;
+            }
+
+            return dataLocation;
+        }
     }
 }

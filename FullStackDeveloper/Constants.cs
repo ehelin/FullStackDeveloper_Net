@@ -6,5 +6,6 @@
 
         public const string ENDPOINT_GET_LOCATIONS = "api/Locations";
         public const string ENDPOINT_GET_LOCATION_DETAILS = "api/Locations/";
+        public const string ENDPOINT_POST_LOCATION = "api/Locations";
     }
 }

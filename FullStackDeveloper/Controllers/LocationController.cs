@@ -35,9 +35,9 @@ namespace Web.Controllers
         [HttpPost]
         public IActionResult DetailsPost(LocationModel model)
         {
-            // TODO - implemet this to save the updated model and return to the summary screen
+            this.client.PostLocation(model);
 
-            return null;
+            return RedirectToAction("Index");
         }
         public IActionResult Error()
         {

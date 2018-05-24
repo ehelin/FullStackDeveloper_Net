@@ -3,6 +3,7 @@ using DataModels = Data.Models;
 using WebModels = Web.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Web
 {
@@ -41,6 +42,22 @@ namespace Web
             return webLocation;
         }
 
+        public async void PostLocation(WebModels.LocationModel location)
+        {
+            DataModels.Location dataLocation = location.GetDataModel();
+            StringContent sc = new StringContent(JsonConvert.SerializeObject(dataLocation), System.Text.Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await POST(sc, Constants.ENDPOINT_POST_LOCATION).ConfigureAwait(false);
+
+            string result = await response.Content.ReadAsStringAsync();
+            bool dataPosted = System.Convert.ToBoolean(result);
+
+            if (!dataPosted)
+            {
+                throw new System.Exception("Location model did not post");
+            }
+        }
+
         private async Task<HttpResponseMessage> GET(string subUrl, string parameter = "")
         {
             HttpClient client = new HttpClient();
@@ -52,6 +69,16 @@ namespace Web
             }
 
             response = await client.GetAsync(url).ConfigureAwait(false);
+
+            return response;
+        }
+
+        private async Task<HttpResponseMessage> POST(StringContent content, string subUrl)
+        {
+            HttpClient client = new HttpClient();
+            string url = this.host + subUrl;
+           
+            HttpResponseMessage response = await client.PostAsync(url, content);
 
             return response;
         }

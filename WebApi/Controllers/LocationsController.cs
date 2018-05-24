@@ -6,6 +6,7 @@ using Data.Models;
 
 namespace WebApi.Controllers
 {
+    // TODO - add basic error handler around each web api method
     [Produces("application/json")]
     [Route("api/Locations")]
     public class LocationsController : Controller
@@ -36,10 +37,12 @@ namespace WebApi.Controllers
 
         // POST: api/Locations
         [HttpPost]
-        public void Post([FromBody]Location location)
+        public bool Post([FromBody]Location location)
         {
             dbContext.Location.Add(location);
             dbContext.SaveChanges();
+
+            return true;
         }
 
         // PUT: api/Locations/5
