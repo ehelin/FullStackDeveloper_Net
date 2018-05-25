@@ -21,21 +21,38 @@ namespace Web.Controllers
 
             return View(model);
         }
-        public IActionResult Details(int? id = null)
+        public IActionResult Details(int? id = null, bool isEdit = false, bool isDelete = false)
         {
-            LocationModel model = new LocationModel(); 
+            LocationModel model = new LocationModel();
 
-            if (id != null && id > 0)
+            if (id != null && id > 0 && isDelete != true)
             {
                 model = this.client.GetLocationDetails(id ?? 0).Result;
+                model.isEdit = isEdit;
             }
-            
+            else if (isDelete)
+            {
+                // Handle the delete
+            }
+
             return View(model);
         }
         [HttpPost]
         public IActionResult DetailsPost(LocationModel model)
         {
-            this.client.PostLocation(model);
+            if (model != null)
+            {
+                if (model.isEdit)
+                {
+                    this.client.PutLocation(model);
+                }
+                else
+                {
+                    this.client.PostLocation(model);
+                }
+            }
+
+            //PutLocation
 
             return RedirectToAction("Index");
         }

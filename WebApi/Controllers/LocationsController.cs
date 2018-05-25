@@ -47,7 +47,7 @@ namespace WebApi.Controllers
 
         // PUT: api/Locations/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Location location)
+        public bool Put(int id, [FromBody]Location location)
         {
             var existingLocation = dbContext.Location.FirstOrDefault(x => x.LocationiId == id);
             existingLocation.LocationDetails = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == id);
@@ -59,6 +59,8 @@ namespace WebApi.Controllers
 
             dbContext.Location.Update(existingLocation);
             dbContext.SaveChanges();
+
+            return true;
         }
 
         // DELETE: api/Locations/5

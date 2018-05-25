@@ -7,7 +7,12 @@
 <ul>
     @foreach (LocationModel location in Model.Locations)
     {
-        <li>@Html.ActionLink(location.LocationName, "Details", "Location", new { id = @location.LocationiId }, null)</li>
+        <li>
+            <input type="button" value="Edit" onclick="location.href='@Url.Action("Details", "Location", new { id = @location.LocationiId, isEdit = true, isDelete = false })';" />
+            <input type="button" value="Delete" onclick="location.href='@Url.Action("Details", "Location", new { id = @location.LocationiId, isEdit = false, isDelete = true })';" />
+            @Html.ActionLink(location.LocationName, "Details", "Location", new { id = @location.LocationiId }, null)
+    
+        </li>
     }
 </ul>
 <input type="button" value="New" onclick="location.href='@Url.Action("Details", "Location")'" />

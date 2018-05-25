@@ -16,6 +16,9 @@ namespace Web.Models
         [DataMember]
         public LocationDetailsModel LocationDetails { get; set; }
 
+        [DataMember]
+        public bool isEdit { get; set; }
+
         public LocationModel() { }
 
         public LocationModel(Data.Models.Location location)
