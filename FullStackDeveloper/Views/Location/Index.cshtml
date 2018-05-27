@@ -9,10 +9,10 @@
     {
         <li>
             <input type="button" value="Edit" onclick="location.href='@Url.Action("Details", "Location", new { id = @location.LocationiId, isEdit = true, isDelete = false })';" />
-            <input type="button" value="Delete" onclick="location.href='@Url.Action("Details", "Location", new { id = @location.LocationiId, isEdit = false, isDelete = true })';" />
+            <input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Location", new { id = @location.LocationiId })';" />
             @Html.ActionLink(location.LocationName, "Details", "Location", new { id = @location.LocationiId }, null)
     
         </li>
     }
 </ul>
-<input type="button" value="New" onclick="location.href='@Url.Action("Details", "Location")'" />
+<input type="button" value="New" onclick="location.href='@Url.Action("Details", "Location", new { id = 0, isEdit = false, isDelete = false })';" />

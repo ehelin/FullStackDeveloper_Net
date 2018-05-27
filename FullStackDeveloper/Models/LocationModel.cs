@@ -7,17 +7,20 @@ namespace Web.Models
     public partial class LocationModel
     {
         [DataMember]
-        public int LocationiId { get; set; }                            // add as hidden field
+        public int LocationiId { get; set; }                           
 
         [DataMember]
         [Display(Name = "Location Name")]
-        public string LocationName { get; set; }                        // add as html label/input (use [Display(Name="Name")])
+        public string LocationName { get; set; }                       
 
         [DataMember]
         public LocationDetailsModel LocationDetails { get; set; }
 
         [DataMember]
         public bool isEdit { get; set; }
+
+        [DataMember]
+        public bool isNew { get; set; }
 
         public LocationModel() { }
 

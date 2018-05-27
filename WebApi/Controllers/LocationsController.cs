@@ -45,12 +45,12 @@ namespace WebApi.Controllers
             return true;
         }
 
-        // PUT: api/Locations/5
-        [HttpPut("{id}")]
-        public bool Put(int id, [FromBody]Location location)
+        // PUT: api/Locations
+        [HttpPut]
+        public bool Put([FromBody]Location location)
         {
-            var existingLocation = dbContext.Location.FirstOrDefault(x => x.LocationiId == id);
-            existingLocation.LocationDetails = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == id);
+            var existingLocation = dbContext.Location.FirstOrDefault(x => x.LocationiId == location.LocationiId);
+            existingLocation.LocationDetails = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == location.LocationiId);
 
             existingLocation.LocationName = location.LocationName;
             existingLocation.LocationDetails.Food = location.LocationDetails.Food;
@@ -65,7 +65,7 @@ namespace WebApi.Controllers
 
         // DELETE: api/Locations/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var location = dbContext.Location.FirstOrDefault(x => x.LocationiId == id);
             var locationDetails = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == id);
@@ -77,6 +77,8 @@ namespace WebApi.Controllers
             dbContext.Attach(location);
             dbContext.Remove(location);
             dbContext.SaveChanges();
+
+            return true;
         }
     }
 }

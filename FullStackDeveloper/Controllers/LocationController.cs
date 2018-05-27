@@ -21,44 +21,60 @@ namespace Web.Controllers
 
             return View(model);
         }
-        public IActionResult Details(int? id = null, bool isEdit = false, bool isDelete = false)
+        public IActionResult Details(int id = 0, bool isEdit = false)
         {
             LocationModel model = new LocationModel();
 
-            if (id != null && id > 0 && isDelete != true)
-            {
-                model = this.client.GetLocationDetails(id ?? 0).Result;
-                model.isEdit = isEdit;
+            if (id == 0 && !isEdit) {
+                model.isNew = true;
             }
-            else if (isDelete)
+            else if (id > 0)
             {
-                // Handle the delete
+                model = this.client.GetLocationDetails(id).Result;
+                model.isEdit = isEdit;
             }
 
             return View(model);
         }
+        public IActionResult Delete(int id)
+        {
+            string result = this.client.DeleteLocation(id).Result;
+            EvaluateResult(result);
+            return RedirectToAction("Index");
+        }
         [HttpPost]
         public IActionResult DetailsPost(LocationModel model)
         {
+            string result = string.Empty;
+
             if (model != null)
             {
                 if (model.isEdit)
                 {
-                    this.client.PutLocation(model);
+                    result = this.client.PutLocation(model).Result;
                 }
                 else
                 {
-                    this.client.PostLocation(model);
+                    result = this.client.PostLocation(model).Result;
                 }
             }
 
-            //PutLocation
+            EvaluateResult(result);
 
             return RedirectToAction("Index");
         }
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private void EvaluateResult(string result)
+        {
+            bool dataPosted = System.Convert.ToBoolean(result);
+            if (!dataPosted)
+            {
+                throw new System.Exception("There was an error using the API");
+            }
         }
     }
 }
