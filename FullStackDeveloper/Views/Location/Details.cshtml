@@ -1,57 +1,59 @@
 ﻿@model LocationModel
-@{
-    ViewData["Title"] = "Location Details";
-}
 
-@{bool modelLocationNameExists = Model != null && !string.IsNullOrEmpty(Model.LocationName);}
-@{bool modelLocationIdExists = Model != null && Model.LocationiId > 0;}
-@{bool modelLocationDetailsIdExists = Model != null && Model.LocationDetails != null && Model.LocationDetails.LocationDetailId > 0;}
-@{bool modelWeatherExists = Model != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.Weather);}
-@{bool modelPeopleExists = Model != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.People);}
-@{bool modelFoodExists = Model != null && Model.LocationDetails != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.Food);}
+@{ Html.RenderPartial("Title"); }
 
-@if (Model.isEdit || Model.isNew)
-{
-    @using (Html.BeginForm("DetailsPost", "Location", FormMethod.Post))
+<div id="pageTitle">
+    <p>Location Details</p>
+</div>
+<div id="pageBodyDetailForm">
+    @{bool modelLocationNameExists = Model != null && !string.IsNullOrEmpty(Model.LocationName);}
+    @{bool modelLocationIdExists = Model != null && Model.LocationiId > 0;}
+    @{bool modelLocationDetailsIdExists = Model != null && Model.LocationDetails != null && Model.LocationDetails.LocationDetailId > 0;}
+    @{bool modelWeatherExists = Model != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.Weather);}
+    @{bool modelPeopleExists = Model != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.People);}
+    @{bool modelFoodExists = Model != null && Model.LocationDetails != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.Food);}
+
+    @if (Model.isEdit || Model.isNew)
     {
-        <p>Location Details</p>
-        <label>Location Name</label>
-        @Html.TextBox("Model.LocationName", modelLocationNameExists ? Model.LocationName : null)
-        <br />
-        <label>Weather</label>
-        @Html.TextBox("Model.LocationDetails.Weather", modelWeatherExists ? Model.LocationDetails.Weather : null)
-        <br />
-        <label>People</label>
-        @Html.TextBox("Model.LocationDetails.People", modelPeopleExists ? Model.LocationDetails.People : null)
-        <br />
-        <label>Food</label>
-        @Html.TextBox("Model.LocationDetails.Food", modelFoodExists ? Model.LocationDetails.Food : null)
-        <br />
-        <input type="submit" value="Submit" />
-        @Html.Hidden("Model.LocationiId", modelLocationIdExists ? Model.LocationiId : 0);
-        @Html.Hidden("Model.LocationDetails.LocationDetailId", modelLocationDetailsIdExists ? Model.LocationDetails.LocationDetailId : 0);
-        @Html.Hidden("Model.isEdit", Model.isEdit);
+        @using (Html.BeginForm("DetailsPost", "Location", FormMethod.Post))
+        {
+            <label>Location Name</label>
+            @Html.TextBox("Model.LocationName", modelLocationNameExists ? Model.LocationName : null)
+            <br />
+            <label>Weather</label>
+            @Html.TextBox("Model.LocationDetails.Weather", modelWeatherExists ? Model.LocationDetails.Weather : null)
+            <br />
+            <label>People</label>
+            @Html.TextBox("Model.LocationDetails.People", modelPeopleExists ? Model.LocationDetails.People : null)
+            <br />
+            <label>Food</label>
+            @Html.TextBox("Model.LocationDetails.Food", modelFoodExists ? Model.LocationDetails.Food : null)
+            <br />
+            <input type="submit" value="Submit" />
+            @Html.Hidden("Model.LocationiId", modelLocationIdExists ? Model.LocationiId : 0);
+            @Html.Hidden("Model.LocationDetails.LocationDetailId", modelLocationDetailsIdExists ? Model.LocationDetails.LocationDetailId : 0);
+            @Html.Hidden("Model.isEdit", Model.isEdit);
+        }
     }
-}
-else
-{
-    @using (Html.BeginForm("DetailsPost", "Location", FormMethod.Post))
+    else
     {
-        <p>Location Details</p>
-        <label>Location Name:&nbsp;</label>
-        @Html.Label("Model.LocationName", Model.LocationName)
-        <br />
-        <label>Weather:&nbsp;</label>
-        @Html.Label("Model.LocationDetails.Weather", Model.LocationDetails.Weather)
-        <br />
-        <label>People:&nbsp;</label>
-        @Html.Label("Model.LocationDetails.People", Model.LocationDetails.People)
-        <br />
-        <label>Food:&nbsp;</label>
-        @Html.Label("Model.LocationDetails.Food", Model.LocationDetails.Food)
-        <br />
+        @using (Html.BeginForm("DetailsPost", "Location", FormMethod.Post))
+        {
+            <label>Location Name:&nbsp;</label>
+            @Html.Label("Model.LocationName", Model.LocationName)
+            <br />
+            <label>Weather:&nbsp;</label>
+            @Html.Label("Model.LocationDetails.Weather", Model.LocationDetails.Weather)
+            <br />
+            <label>People:&nbsp;</label>
+            @Html.Label("Model.LocationDetails.People", Model.LocationDetails.People)
+            <br />
+            <label>Food:&nbsp;</label>
+            @Html.Label("Model.LocationDetails.Food", Model.LocationDetails.Food)
+            <br />
+        }
     }
-}
-<br />
-<br />
-@Html.ActionLink("Summary", "Index", "Location")
+</div>
+<div id="pageNavigation">
+    @Html.ActionLink("Summary", "Index", "Location")
+</div>

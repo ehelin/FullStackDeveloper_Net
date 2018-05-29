@@ -1,18 +1,23 @@
 ﻿@model LocationsModel
-@{
-    ViewData["Title"] = "Location Summary";
-}
 
-<p>Location Summary</p>
-<ul>
-    @foreach (LocationModel location in Model.Locations)
-    {
-        <li>
-            <input type="button" value="Edit" onclick="location.href='@Url.Action("Details", "Location", new { id = @location.LocationiId, isEdit = true, isDelete = false })';" />
-            <input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Location", new { id = @location.LocationiId })';" />
-            @Html.ActionLink(location.LocationName, "Details", "Location", new { id = @location.LocationiId }, null)
-    
-        </li>
-    }
-</ul>
-<input type="button" value="New" onclick="location.href='@Url.Action("Details", "Location", new { id = 0, isEdit = false, isDelete = false })';" />
+@{ Html.RenderPartial("Title"); }
+
+<div id="pageTitle">
+    <p>Location Summary</p>
+</div>
+<div id="pageBodyList">
+    <ul>
+        @foreach (LocationModel location in Model.Locations)
+        {
+            <li>
+                <input type="button" value="Edit" onclick="location.href='@Url.Action("Details", "Location", new { id = @location.LocationiId, isEdit = true, isDelete = false })';" />
+                <input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Location", new { id = @location.LocationiId })';" />
+                @Html.ActionLink(location.LocationName, "Details", "Location", new { id = @location.LocationiId }, null)
+
+            </li>
+        }
+    </ul>
+</div>
+<div id="pageNavigation">
+    <input type="button" value="New" onclick="location.href='@Url.Action("Details", "Location", new { id = 0, isEdit = false, isDelete = false })';" />
+</div>
