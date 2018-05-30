@@ -2,22 +2,43 @@
 
 @{ Html.RenderPartial("Title"); }
 
-<div id="pageTitle">
-    <p>Location Summary</p>
+<div id="pageTitle" class="foreground textColor text">
+    <h4>Location Summary</h4>
 </div>
-<div id="pageBodyList">
+<div id="pageBodyList" class="foreground textColor  text">
     <ul>
         @foreach (LocationModel location in Model.Locations)
         {
             <li>
-                <input type="button" value="Edit" onclick="location.href='@Url.Action("Details", "Location", new { id = @location.LocationiId, isEdit = true, isDelete = false })';" />
-                <input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Location", new { id = @location.LocationiId })';" />
-                @Html.ActionLink(location.LocationName, "Details", "Location", new { id = @location.LocationiId }, null)
+                <input type="button" value="Edit" class="foreground textColor"
+                       onclick="location.href='@Url.Action("Details",
+                                              "Location",
+                                              new {
+                                                  id = @location.LocationiId,
+                                                  isEdit = true,
+                                                  isDelete = false,
+                                                  @class = "foreground textColor text"
+                                              })';" />
+                <input type="button" value="Delete" class="foreground textColor"
+                       onclick="location.href='@Url.Action("Delete",
+                                              "Location",
+                                              new {
+                                                  id = @location.LocationiId
+                                              })';" />
+
+                @Html.ActionLink(location.LocationName, "Details",
+                                                "Location",
+                                                new {
+                                                    id = @location.LocationiId
+                                                }, null)
 
             </li>
         }
     </ul>
 </div>
-<div id="pageNavigation">
-    <input type="button" value="New" onclick="location.href='@Url.Action("Details", "Location", new { id = 0, isEdit = false, isDelete = false })';" />
+<div id="pageNavigation" class="foreground textColor">
+    <input type="button" value="New" class="foreground textColor"
+           onclick="location.href='@Url.Action("Details", 
+                                  "Location", 
+                                  new { id = 0, isEdit = false, isDelete = false })';" />
 </div>

@@ -2,10 +2,10 @@
 
 @{ Html.RenderPartial("Title"); }
 
-<div id="pageTitle">
-    <p>Location Details</p>
+<div id="pageTitle" class="foreground textColor  text">
+    <h4>Location Details</h4>
 </div>
-<div id="pageBodyDetailForm">
+<div id="pageBodyDetailForm" class="foreground textColor text">
     @{bool modelLocationNameExists = Model != null && !string.IsNullOrEmpty(Model.LocationName);}
     @{bool modelLocationIdExists = Model != null && Model.LocationiId > 0;}
     @{bool modelLocationDetailsIdExists = Model != null && Model.LocationDetails != null && Model.LocationDetails.LocationDetailId > 0;}
@@ -29,7 +29,7 @@
             <label>Food</label>
             @Html.TextBox("Model.LocationDetails.Food", modelFoodExists ? Model.LocationDetails.Food : null)
             <br />
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit"  class="foreground textColor"/>
             @Html.Hidden("Model.LocationiId", modelLocationIdExists ? Model.LocationiId : 0);
             @Html.Hidden("Model.LocationDetails.LocationDetailId", modelLocationDetailsIdExists ? Model.LocationDetails.LocationDetailId : 0);
             @Html.Hidden("Model.isEdit", Model.isEdit);
@@ -54,6 +54,10 @@
         }
     }
 </div>
-<div id="pageNavigation">
-    @Html.ActionLink("Summary", "Index", "Location")
+<br />
+<div id="pageNavigation" class="foreground textColor text">
+    @Html.ActionLink("Summary", "Index", "Location", 
+        new { 
+            @class = "foreground textColor text"
+        })
 </div>

@@ -1,1 +1,31 @@
-﻿
+﻿.background {
+    background-color: #695DBD
+}
+
+.foreground {
+    background-color: white;
+}
+
+.textCenter {
+    margin: auto;
+    width: 30%;
+    text-align: center;
+}
+
+.textColor {
+    color: #695DBD;
+}
+
+.text {
+    font-family: Arial;
+    font-size: medium;
+}
+
+.accent {
+    background-color: #695DBD
+}
+
+/*.button {
+    border: solid;
+    border-color: #695DBD;
+}*/
