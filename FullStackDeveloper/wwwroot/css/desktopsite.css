@@ -1,31 +1,101 @@
 ﻿.background {
-    background-color: #695DBD
+    background-color: white;
+    width: 100%;
 }
 
-.foreground {
-    background-color: white;
+.banner {
+    background-color: #695DBD;
+    width:100%;
+}
+
+.bannerTextColor {
+    color: white;
+}
+
+.bannerTitle {
+    font-size: x-large;
 }
 
 .textCenter {
-    margin: auto;
-    width: 30%;
     text-align: center;
-}
-
-.textColor {
-    color: #695DBD;
 }
 
 .text {
     font-family: Arial;
+}
+
+.subTitle {
     font-size: medium;
 }
 
-.accent {
-    background-color: #695DBD
+.textRegularColor {
+    color: #695DBD;
 }
 
-/*.button {
+.textRegular {
+    font-size:smaller;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0 0 0 0;
+    text-align: left;
+}
+
+.link {
+    align-content: center;
     border: solid;
     border-color: #695DBD;
-}*/
+    width: 100px;
+}
+
+.labelEditable {
+    top: 20px;
+}
+
+.button {
+    border: solid;
+    border-color: #695DBD;
+    font-size: smaller;
+    color: #695DBD;
+    background-color: white;
+}
+
+.summary {
+    text-align: center;
+}
+
+.summaryList {
+    display: inline-block;
+}
+
+.summaryButtons {
+    text-align: center;
+}
+
+.detailsLeftRight {
+    width: 100%;
+}
+
+.detailsButtons {
+    position: absolute;
+    top:175px;
+    width: 100%;
+    text-align: center;
+    align-content: center;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.detailsLeft {
+    width: 49%;
+    float: left;
+    text-align: center;
+}
+.detailsRight {
+    width: 49%;
+    float: right;
+    text-align: center;
+}

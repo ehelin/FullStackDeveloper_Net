@@ -2,62 +2,166 @@
 
 @{ Html.RenderPartial("Title"); }
 
-<div id="pageTitle" class="foreground textColor  text">
-    <h4>Location Details</h4>
+<div class="banner bannerTextColor bannerTitle textCenter text subTitle">
+    Location Details
 </div>
-<div id="pageBodyDetailForm" class="foreground textColor text">
-    @{bool modelLocationNameExists = Model != null && !string.IsNullOrEmpty(Model.LocationName);}
-    @{bool modelLocationIdExists = Model != null && Model.LocationiId > 0;}
-    @{bool modelLocationDetailsIdExists = Model != null && Model.LocationDetails != null && Model.LocationDetails.LocationDetailId > 0;}
-    @{bool modelWeatherExists = Model != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.Weather);}
-    @{bool modelPeopleExists = Model != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.People);}
-    @{bool modelFoodExists = Model != null && Model.LocationDetails != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.Food);}
+@{bool modelLocationNameExists = Model != null && !string.IsNullOrEmpty(Model.LocationName);}
+@{bool modelLocationIdExists = Model != null && Model.LocationiId > 0;}
+@{bool modelLocationDetailsIdExists = Model != null && Model.LocationDetails != null && Model.LocationDetails.LocationDetailId > 0;}
+@{bool modelWeatherExists = Model != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.Weather);}
+@{bool modelPeopleExists = Model != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.People);}
+@{bool modelFoodExists = Model != null && Model.LocationDetails != null && Model.LocationDetails != null && !string.IsNullOrEmpty(Model.LocationDetails.Food);}
 
-    @if (Model.isEdit || Model.isNew)
+@if (Model.isEdit || Model.isNew)
+{
+    @using (Html.BeginForm("DetailsPost", "Location", FormMethod.Post))
     {
-        @using (Html.BeginForm("DetailsPost", "Location", FormMethod.Post))
-        {
-            <label>Location Name</label>
-            @Html.TextBox("Model.LocationName", modelLocationNameExists ? Model.LocationName : null)
-            <br />
-            <label>Weather</label>
-            @Html.TextBox("Model.LocationDetails.Weather", modelWeatherExists ? Model.LocationDetails.Weather : null)
-            <br />
-            <label>People</label>
-            @Html.TextBox("Model.LocationDetails.People", modelPeopleExists ? Model.LocationDetails.People : null)
-            <br />
-            <label>Food</label>
-            @Html.TextBox("Model.LocationDetails.Food", modelFoodExists ? Model.LocationDetails.Food : null)
-            <br />
-            <input type="submit" value="Submit"  class="foreground textColor"/>
-            @Html.Hidden("Model.LocationiId", modelLocationIdExists ? Model.LocationiId : 0);
-            @Html.Hidden("Model.LocationDetails.LocationDetailId", modelLocationDetailsIdExists ? Model.LocationDetails.LocationDetailId : 0);
-            @Html.Hidden("Model.isEdit", Model.isEdit);
-        }
+        <div>
+            <div class="detailsLeftRight">
+                <div class="detailsLeft">
+                    <div class="centerText">
+                        <label class="text textRegularColor textRegular labelEditable">Location Name</label>
+                    </div>
+                </div>
+                <div class="detailsRight">
+                    @Html.TextBox("Model.LocationName", modelLocationNameExists ? Model.LocationName : null, null,
+                                                                                  new
+                                                                                  {
+                                                                                      @class = "text textRegularColor textRegular"
+                                                                                  })
+                </div>
+            </div>
+            <div class="detailsLeftRight">
+                <div class="detailsLeft">
+                    <div class="centerText">
+                        <label class="text textRegularColor textRegular labelEditable">Weather</label>
+                    </div>
+                </div>
+                <div class="detailsRight">
+                    @Html.TextBox("Model.LocationDetails.Weather", modelWeatherExists ? Model.LocationDetails.Weather : null, null,
+                                                                                  new
+                                                                                  {
+                                                                                      @class = "text textRegularColor textRegular"
+                                                                                  })
+                </div>
+            </div>
+            <div class="detailsLeftRight">
+                <div class="detailsLeft">
+                    <div class="centerText">
+                        <label class="text textRegularColor textRegular labelEditable">People</label>
+                    </div>
+                </div>
+                <div class="detailsRight">
+                    @Html.TextBox("Model.LocationDetails.People", modelPeopleExists ? Model.LocationDetails.People : null, null,
+                                                                          new
+                                                                          {
+                                                                              @class = "text textRegularColor textRegular"
+                                                                          })
+                </div>
+            </div>
+            <div class="detailsLeftRight">
+                <div class="detailsLeft">
+                    <div class="centerText">
+                        <label class="text textRegularColor textRegular labelEditable">Food</label>
+                    </div>
+                </div>
+                <div class="detailsRight">
+                    @Html.TextBox("Model.LocationDetails.Food", modelFoodExists ? Model.LocationDetails.Food : null, null,
+                                                                          new
+                                                                          {
+                                                                              @class = "text textRegularColor textRegular"
+                                                                          })
+                </div>
+            </div>
+            @Html.Hidden("Model.LocationiId", modelLocationIdExists ? Model.LocationiId : 0)
+            @Html.Hidden("Model.LocationDetails.LocationDetailId", modelLocationDetailsIdExists ? Model.LocationDetails.LocationDetailId : 0)
+            @Html.Hidden("Model.isEdit", Model.isEdit)
+        </div>
+        <div class="detailsButtons">
+            <input type="submit" value="Submit" class="text button" />
+            <input type="button" value="Cancel" class="text button"
+                   onclick="location.href='@Url.Action("Index",
+                                    "Location",
+                                    new {
+                                        @class = "textRegularColor text"
+                                    })';" />
+        </div>
     }
-    else
+}
+else
+{
+    @using (Html.BeginForm("DetailsPost", "Location", FormMethod.Post))
     {
-        @using (Html.BeginForm("DetailsPost", "Location", FormMethod.Post))
-        {
-            <label>Location Name:&nbsp;</label>
-            @Html.Label("Model.LocationName", Model.LocationName)
-            <br />
-            <label>Weather:&nbsp;</label>
-            @Html.Label("Model.LocationDetails.Weather", Model.LocationDetails.Weather)
-            <br />
-            <label>People:&nbsp;</label>
-            @Html.Label("Model.LocationDetails.People", Model.LocationDetails.People)
-            <br />
-            <label>Food:&nbsp;</label>
-            @Html.Label("Model.LocationDetails.Food", Model.LocationDetails.Food)
-            <br />
-        }
+        <div>
+            <div class="detailsLeftRight">
+                <div class="detailsLeft">
+                    <div class="centerText">
+                        <label class="text textRegularColor textRegular labelEditable">Location Name:&nbsp;</label>
+                    </div>
+                </div>
+                <div class="detailsRight">
+                    @Html.Label("Model.LocationName",
+                                         Model.LocationName,
+                                         new
+                                         {
+                                             @class = "text textRegularColor textRegular"
+                                         })
+                </div>
+            </div>
+            <div class="detailsLeftRight">
+                <div class="detailsLeft">
+                    <div class="centerText">
+                        <label class="text textRegularColor textRegular labelEditable">Weather:&nbsp;</label>
+                    </div>
+                </div>
+                <div class="detailsRight">
+                    @Html.Label("Model.LocationDetails.Weather",
+                                         Model.LocationDetails.Weather,
+                                         new
+                                         {
+                                             @class = "text textRegularColor textRegular"
+                                         })
+                </div>
+            </div>
+            <div class="detailsLeftRight">
+                <div class="detailsLeft">
+                    <div class="centerText">
+                        <label class="text textRegularColor textRegular labelEditable">People:&nbsp;</label>
+                    </div>
+                </div>
+                <div class="detailsRight">
+                    @Html.Label("Model.LocationDetails.Weather",
+                                         Model.LocationDetails.People,
+                                         new
+                                         {
+                                             @class = "text textRegularColor textRegular"
+                                         })
+                </div>
+            </div>
+            <div class="detailsLeftRight">
+                <div class="detailsLeft">
+                    <div class="centerText">
+                        <label class="text textRegularColor textRegular labelEditable">Food:&nbsp;</label>
+                    </div>
+                </div>
+                <div class="detailsRight">
+                    @Html.Label("Model.LocationDetails.Weather",
+                                         Model.LocationDetails.Food,
+                                         new
+                                         {
+                                             @class = "text textRegularColor textRegular"
+                                         })
+                </div>
+            </div>
+        </div>
+        <div class="detailsButtons">
+            <input type="button" value="Cancel" class="text button"
+                   onclick="location.href='@Url.Action("Index",
+                                            "Location",
+                                            new {
+                                                @class = "textRegularColor text"
+                                            })';" />
+        </div>
     }
-</div>
-<br />
-<div id="pageNavigation" class="foreground textColor text">
-    @Html.ActionLink("Summary", "Index", "Location", 
-        new { 
-            @class = "foreground textColor text"
-        })
-</div>
+}
+

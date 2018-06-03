@@ -4,18 +4,16 @@ namespace Web.Models
 {
     public partial class LocationDetailsModel
     {
-        // TODO - add serializable and datacontract/datamember annotations
-
-        public int LocationDetailId { get; set; }               //make hidden field
-        public int? LocationId { get; set; }                    //do not use of view
+        public int LocationDetailId { get; set; }               
+        public int? LocationId { get; set; }                    
 
         [Display(Name = "Weather")]
-        public string Weather { get; set; }                     //add as html label/input (use [Display(Name="Name")])
+        public string Weather { get; set; }                     
 
         [Display(Name = "Weather")]
-        public string Food { get; set; }                        //add as html label/input (use [Display(Name="Name")])
+        public string Food { get; set; }                        
 
         [Display(Name = "Weather")]
-        public string People { get; set; }                      //add as html label/input (use [Display(Name="Name")])
+        public string People { get; set; }                      
     }
 }
