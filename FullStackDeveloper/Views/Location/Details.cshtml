@@ -2,6 +2,44 @@
 
 @{ Html.RenderPartial("Title"); }
 
+<script type="text/javascript">
+    function validateForm() {
+        var isValid = true;
+        var validationError = '';
+
+        var locationNameTb = document.getElementById("locationTbId");
+        var weatherTb = document.getElementById("locationDetailsWeatherTbId");
+        var peopleTb = document.getElementById("locationDetailsPeopleTbId");
+        var foodTb = document.getElementById("locationDetailsFoodTbId");
+
+        if (locationNameTb.value == undefined || locationNameTb.value == null || locationNameTb.value.length <= 0) {
+            isValid = false;
+            validationError = 'Please add a location name';
+        }
+        if (isValid
+                && (peopleTb.value == undefined || weatherTb.value == null || weatherTb.value.length <= 0)) {
+            isValid = false;
+            validationError = 'Please add a weather value';
+        }
+        if (isValid
+                && (weatherTb.value == undefined || peopleTb.value == null || peopleTb.value.length <= 0)) {
+            isValid = false;
+            validationError = 'Please add a people value';
+        }
+        if (isValid
+                && (foodTb.value == undefined || foodTb.value == null || foodTb.value.length <= 0)) {
+            isValid = false;
+            validationError = 'Please add a food value';
+        }
+
+        if (isValid) {
+            document.forms[0].submit();
+        } else {
+            alert(validationError);
+        }
+    }
+</script>
+
 <div class="banner bannerTextColor bannerTitle textCenter text subTitle">
     Location Details
 </div>
@@ -24,11 +62,14 @@
                     </div>
                 </div>
                 <div class="detailsRight">
-                    @Html.TextBox("Model.LocationName", modelLocationNameExists ? Model.LocationName : null, null,
-                                                                                  new
-                                                                                  {
-                                                                                      @class = "text textRegularColor textRegular"
-                                                                                  })
+                    @Html.TextBox("Model.LocationName",
+                                    modelLocationNameExists ? Model.LocationName : null,
+                                    null,
+                                    new
+                                    {
+                                        id = "locationTbId",
+                                        @class = "text textRegularColor textRegular"
+                                    })
                 </div>
             </div>
             <div class="detailsLeftRight">
@@ -38,11 +79,14 @@
                     </div>
                 </div>
                 <div class="detailsRight">
-                    @Html.TextBox("Model.LocationDetails.Weather", modelWeatherExists ? Model.LocationDetails.Weather : null, null,
-                                                                                  new
-                                                                                  {
-                                                                                      @class = "text textRegularColor textRegular"
-                                                                                  })
+                    @Html.TextBox("Model.LocationDetails.Weather",
+                                    modelWeatherExists ? Model.LocationDetails.Weather : null, 
+                                    null,
+                                    new
+                                    {
+                                        id = "locationDetailsWeatherTbId",
+                                        @class = "text textRegularColor textRegular"
+                                    })
                 </div>
             </div>
             <div class="detailsLeftRight">
@@ -52,11 +96,14 @@
                     </div>
                 </div>
                 <div class="detailsRight">
-                    @Html.TextBox("Model.LocationDetails.People", modelPeopleExists ? Model.LocationDetails.People : null, null,
-                                                                          new
-                                                                          {
-                                                                              @class = "text textRegularColor textRegular"
-                                                                          })
+                    @Html.TextBox("Model.LocationDetails.People", 
+                                    modelPeopleExists ? Model.LocationDetails.People : null, 
+                                    null,
+                                    new
+                                    {
+                                        id = "locationDetailsPeopleTbId",
+                                        @class = "text textRegularColor textRegular"
+                                    })
                 </div>
             </div>
             <div class="detailsLeftRight">
@@ -66,11 +113,14 @@
                     </div>
                 </div>
                 <div class="detailsRight">
-                    @Html.TextBox("Model.LocationDetails.Food", modelFoodExists ? Model.LocationDetails.Food : null, null,
-                                                                          new
-                                                                          {
-                                                                              @class = "text textRegularColor textRegular"
-                                                                          })
+                    @Html.TextBox("Model.LocationDetails.Food",
+                                modelFoodExists ? Model.LocationDetails.Food : null,
+                                null,
+                                new
+                                {
+                                    id = "locationDetailsFoodTbId",
+                                    @class = "text textRegularColor textRegular"
+                                })
                 </div>
             </div>
             @Html.Hidden("Model.LocationiId", modelLocationIdExists ? Model.LocationiId : 0)
@@ -78,7 +128,7 @@
             @Html.Hidden("Model.isEdit", Model.isEdit)
         </div>
         <div class="detailsButtons">
-            <input type="submit" value="Submit" class="text button" />
+            <input type="button" value="Submit" class="text button" onclick="validateForm();"/>
             <input type="button" value="Cancel" class="text button"
                    onclick="location.href='@Url.Action("Index",
                                     "Location",
