@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Data.Models;
+using Data;
 
 namespace WebApi.Controllers
 {
@@ -11,74 +12,46 @@ namespace WebApi.Controllers
     [Route("api/Locations")]
     public class LocationsController : Controller
     {
-        private MyAwesomeDatabaseContext dbContext = null;
+        private ILocationData locationData = null;
 
-        public LocationsController()
+        public LocationsController(ILocationData locationData)
         {
-            dbContext = new MyAwesomeDatabaseContext();
+            this.locationData = locationData;
         }
 
         // GET: api/Locations
         [HttpGet]
         public List<Location> GetLocations()
         {
-            return dbContext.Location.ToList();
+            return locationData.GetLocations();
         }
 
         // GET: api/Locations/5
         [HttpGet("{id}", Name = "Get")]
         public Location Get(int id)
         {
-            var location = dbContext.Location.FirstOrDefault(x => x.LocationiId == id);
-            location.LocationDetails = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == id);
-
-            return location;
+            return locationData.GetLocation(id);
         }
 
         // POST: api/Locations
         [HttpPost]
         public bool Post([FromBody]Location location)
         {
-            dbContext.Location.Add(location);
-            dbContext.SaveChanges();
-
-            return true;
+            return locationData.SaveLocation(location);
         }
 
         // PUT: api/Locations
         [HttpPut]
         public bool Put([FromBody]Location location)
         {
-            var existingLocation = dbContext.Location.FirstOrDefault(x => x.LocationiId == location.LocationiId);
-            existingLocation.LocationDetails = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == location.LocationiId);
-
-            existingLocation.LocationName = location.LocationName;
-            existingLocation.LocationDetails.Food = location.LocationDetails.Food;
-            existingLocation.LocationDetails.People = location.LocationDetails.People;
-            existingLocation.LocationDetails.Weather = location.LocationDetails.Weather;
-
-            dbContext.Location.Update(existingLocation);
-            dbContext.SaveChanges();
-
-            return true;
+            return locationData.UpdateLocation(location);
         }
 
         // DELETE: api/Locations/5
         [HttpDelete("{id}")]
         public bool Delete(int id)
         {
-            var location = dbContext.Location.FirstOrDefault(x => x.LocationiId == id);
-            var locationDetails = dbContext.LocationDetails.FirstOrDefault(x => x.LocationId == id);
-
-            dbContext.Attach(locationDetails);
-            dbContext.Remove(locationDetails);
-            dbContext.SaveChanges();
-
-            dbContext.Attach(location);
-            dbContext.Remove(location);
-            dbContext.SaveChanges();
-
-            return true;
+            return locationData.Delete(id);
         }
     }
 }
