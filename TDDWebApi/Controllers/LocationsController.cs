@@ -17,10 +17,10 @@ namespace TDDWebApi.Controllers
             return View();
         }
 
-        [HttpGet]
-        public List<Location> GetLocations()
-        {
-            throw new NotImplementedException();
-        }
+        //[HttpGet]
+        //public List<Location> GetLocations()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

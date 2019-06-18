@@ -16,7 +16,7 @@ namespace TDDTests
         public void GetLocations()
         {
             string url = baseUrl + "/api/Locations";
-            var locations = GetLocations(baseUrl).Result;
+            var locations = GetLocations(url).Result;
 
             Assert.IsNotNull(locations);
             Assert.IsTrue(locations.Count > 0);

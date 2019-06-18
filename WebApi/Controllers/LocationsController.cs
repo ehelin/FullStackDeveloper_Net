@@ -23,7 +23,8 @@ namespace WebApi.Controllers
         [HttpGet]
         public List<Location> GetLocations()
         {
-            return locationData.GetLocations();
+            var locations = locationData.GetLocations();
+            return locations;
         }
 
         // GET: api/Locations/5
