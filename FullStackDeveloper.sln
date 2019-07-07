@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{02F9D73F-B271-4E6D-A689-2B2CC185B838}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDDTests", "TDDTests\TDDTests.csproj", "{C491869D-D6CF-4AFA-BBCF-60F654C1D011}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TDDTests", "TDDTests\TDDTests.csproj", "{C491869D-D6CF-4AFA-BBCF-60F654C1D011}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDDWebApi", "TDDWebApi\TDDWebApi.csproj", "{BE4B86E1-8A07-4EA7-AE33-5289C84450EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TDDWebApi", "TDDWebApi\TDDWebApi.csproj", "{BE4B86E1-8A07-4EA7-AE33-5289C84450EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicNetWebApi", "ClassicNetWebApi\ClassicNetWebApi.csproj", "{4AAECCF4-7DF9-4E71-A1AD-16A0867539B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{BE4B86E1-8A07-4EA7-AE33-5289C84450EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE4B86E1-8A07-4EA7-AE33-5289C84450EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE4B86E1-8A07-4EA7-AE33-5289C84450EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AAECCF4-7DF9-4E71-A1AD-16A0867539B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AAECCF4-7DF9-4E71-A1AD-16A0867539B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AAECCF4-7DF9-4E71-A1AD-16A0867539B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AAECCF4-7DF9-4E71-A1AD-16A0867539B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

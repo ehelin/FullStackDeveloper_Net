@@ -10,6 +10,7 @@ namespace WebApi.Controllers
     // TODO - add basic error handler around each web api method
     [Produces("application/json")]
     [Route("api/Locations")]
+    [ApiAuthenticationFilter]
     public class LocationsController : Controller
     {
         private ILocationData locationData = null;
