@@ -2,7 +2,7 @@
 
 namespace ClassicNetWebApi.Controllers
 {
-    [ApiAuthenticationFilter]
+    [ApiAuthorizationFilter]
     public class ValuesController : ApiController
     {
         // GET api/values

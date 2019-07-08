@@ -5,7 +5,7 @@ using System.Web.Http.Filters;
 namespace ClassicNetWebApi
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
-    public class ApiAuthenticationFilter : AuthorizationFilterAttribute
+    public class ApiAuthorizationFilter : AuthorizationFilterAttribute
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {

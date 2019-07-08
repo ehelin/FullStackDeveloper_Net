@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApi 
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-    public class ApiAuthenticationFilter : Attribute, IAuthorizationFilter
+    public class ApiAuthorizationFilter : Attribute, IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            bool isAuthenticated = false;
+            bool isAuthorized = false;
 
             var headers = context.HttpContext.Request.Headers;
             var auth = headers["Authorization"];
@@ -24,12 +24,12 @@ namespace WebApi
 
                     if (schema == "NetCoreAuth" && token == "IAmAToken")
                     {
-                        isAuthenticated = true;
+                        isAuthorized = true;
                     }
                 }
             }
 
-            if (!isAuthenticated)
+            if (!isAuthorized)
             {
                 context.Result = new StatusCodeResult((int)System.Net.HttpStatusCode.Unauthorized);
                 return;
