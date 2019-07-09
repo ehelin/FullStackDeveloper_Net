@@ -28,12 +28,12 @@ namespace WebApi
             services.AddSingleton<ILocationData>(new LocationData());
             services.AddMvc();
 
-            var policyImpl = new WebApi.ClaimsBased.MinimumAgeRequirement(21);
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("MinimumAgeRequirement",
-                    policy => policy.Requirements.Add(policyImpl));
-            });
+            //var policyImpl = new WebApi.ClaimsBased.MinimumAgeRequirement(21);
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("MinimumAgeRequirement",
+            //        policy => policy.Requirements.Add(policyImpl));
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +44,7 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMiddleware<ApiAuthenticationFilter>();
             app.UseMvc();
         }
     }

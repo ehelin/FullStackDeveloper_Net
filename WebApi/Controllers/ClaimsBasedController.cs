@@ -9,7 +9,7 @@ namespace WebApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/claims")]
-    [Authorize(Policy = "MinimumAgeRequirement")]
+    //[Authorize(Policy = "MinimumAgeRequirement")]
     public class ClaimsBasedController : Controller
     {
         // GET: api/ClaimsBased
