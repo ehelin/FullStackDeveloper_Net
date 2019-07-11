@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi 
+namespace NetCoreAPIAuthorizationFilter
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public class ApiAuthorizationFilter : Attribute, IAuthorizationFilter

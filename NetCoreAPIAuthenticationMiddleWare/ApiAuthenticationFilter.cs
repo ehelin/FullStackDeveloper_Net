@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication;
 using System.Text;
 
-namespace WebApi
+namespace NetCoreAPIAuthenticationMiddleWare
 {
     public class ApiAuthenticationFilter
     {
@@ -31,7 +33,6 @@ namespace WebApi
 
                     if (schema == "NetCoreAuth" && token == "IAmAToken")
                     {
-                        //return;
                         await _next.Invoke(context);
                         return;
                     }

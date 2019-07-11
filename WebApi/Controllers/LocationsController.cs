@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Data.Models;
 using Data;
 
@@ -10,7 +11,7 @@ namespace WebApi.Controllers
     // TODO - add basic error handler around each web api method
     [Produces("application/json")]
     [Route("api/Locations")]
-    //[ApiAuthorizationFilter]
+    [Authorize]
     public class LocationsController : Controller
     {
         private ILocationData locationData = null;
