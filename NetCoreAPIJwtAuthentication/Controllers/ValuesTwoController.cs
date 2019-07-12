@@ -6,11 +6,11 @@ namespace NetCoreAPIJwtAuthentication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ValuesTwoController : ControllerBase
     {
-        // GET api/values
+        // GET api/valuesTwo
         [HttpGet]
-        [Authorize(Policy = "MyAwesomeClaim")]      // expecting specific claim
+        [Authorize]                         // expecting any claim
         public string Get()
         {
             var currentUser = HttpContext.User;
@@ -21,7 +21,7 @@ namespace NetCoreAPIJwtAuthentication.Controllers
             var myAwesomeClaimDataPoint = currentUser.Claims.Where(p => p.Type == "MyAwesomeClaimDataPoint");
             var myAwesomeClaimDataPointValue = myAwesomeClaimDataPoint.FirstOrDefault().Value;
 
-            return "I am a NetCoreAPIJwtAuthentication HTTP Get Method with a specific claim - ClaimDataPointValue: " + myAwesomeClaimDataPointValue;
+            return "I am a NetCoreAPIJwtAuthentication HTTP Get Method with no specified claim - ClaimDataPointValue: " + myAwesomeClaimDataPointValue;
         }
     }
 }

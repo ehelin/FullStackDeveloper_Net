@@ -36,6 +36,11 @@ namespace NetCoreAPIJwtAuthentication
                     };
                 });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("MyAwesomeClaim", policy => policy.RequireClaim("MyAwesomeClaim", "MyAwesomeClaimValue"));
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
