@@ -29,7 +29,7 @@ namespace NetCoreAPIJwtAuthentication.Controllers
             return tokenString;
         }
                
-        private string GenerateJSONWebToken(string tokenDataPoint = "")
+        private string GenerateJSONWebToken(string tokenDataPointValue = "")
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -38,7 +38,7 @@ namespace NetCoreAPIJwtAuthentication.Controllers
 
             // meant to work (it does)
             claims.Add(new Claim("MyAwesomeClaim", "MyAwesomeClaimValue"));
-            claims.Add(new Claim("MyAwesomeClaimDataPoint", tokenDataPoint));
+            claims.Add(new Claim("MyAwesomeClaimDataPoint", tokenDataPointValue));
 
             //claims.Add(new Claim("MyAwesomeClaim", "MyAwesomeClaimValueWrong"));// meant to not work (it does)
 
@@ -47,6 +47,12 @@ namespace NetCoreAPIJwtAuthentication.Controllers
               claims,
               expires: DateTime.Now.AddMinutes(120),
               signingCredentials: credentials);
+
+            token.Payload["myJsonWebTokenDataPointObject"] = new {
+                tokenDataPoint1 = "value 1",
+                tokenDataPoint2 = "value 2",
+                tokenDataPoint3 = tokenDataPointValue,
+            };
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
