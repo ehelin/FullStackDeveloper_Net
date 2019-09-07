@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2002
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "FullStackDeveloper\Web.csproj", "{8CAC0B36-7E08-4FAF-962D-D1C439E64369}"
 EndProject
@@ -18,6 +18,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreAPIAuthorizationFilter", "NetCoreAPIAuthorizationFilter\NetCoreAPIAuthorizationFilter.csproj", "{FA0BC8D0-0C1E-407A-A6DD-C3281232F958}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreAPIJwtAuthentication", "NetCoreAPIJwtAuthentication\NetCoreAPIJwtAuthentication.csproj", "{B8CA26A6-F6C3-420C-9AFB-CF8956115720}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServerResearch", "IdentityServerResearch", "{3E44DF17-0784-42E5-A295-642513DE3862}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicNetWeb", "ClassicNetWeb\ClassicNetWeb.csproj", "{ADCF4ACD-1D08-457E-A89D-4D1A9F372A87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,10 @@ Global
 		{B8CA26A6-F6C3-420C-9AFB-CF8956115720}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8CA26A6-F6C3-420C-9AFB-CF8956115720}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8CA26A6-F6C3-420C-9AFB-CF8956115720}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADCF4ACD-1D08-457E-A89D-4D1A9F372A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADCF4ACD-1D08-457E-A89D-4D1A9F372A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADCF4ACD-1D08-457E-A89D-4D1A9F372A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADCF4ACD-1D08-457E-A89D-4D1A9F372A87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +70,7 @@ Global
 		{CDFE8CDC-77AA-4842-908B-7BC5124A30C8} = {A7004E47-F515-46F0-93FD-8CE51670E194}
 		{FA0BC8D0-0C1E-407A-A6DD-C3281232F958} = {A7004E47-F515-46F0-93FD-8CE51670E194}
 		{B8CA26A6-F6C3-420C-9AFB-CF8956115720} = {A7004E47-F515-46F0-93FD-8CE51670E194}
+		{ADCF4ACD-1D08-457E-A89D-4D1A9F372A87} = {3E44DF17-0784-42E5-A295-642513DE3862}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1CFD60BC-9368-4CE0-A680-9FC25EBA89A2}
