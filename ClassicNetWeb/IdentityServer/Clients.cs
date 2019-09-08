@@ -7,23 +7,25 @@ namespace ClassicNetWeb.IdentityServer
     {
         public static IEnumerable<Client> Get()
         {
-            return new[]
+            var clients = new[]
             {
-            new Client
-            {
-                Enabled = true,
-                ClientName = "MVC Client",
-                ClientId = "mvc",
-                Flow = Flows.Implicit,
-
-                RedirectUris = new List<string>
+                new Client
                 {
-                    "https://localhost:44319/"
-                },
+                    Enabled = true,
+                    ClientName = "MVC Client",
+                    ClientId = "mvc",
+                    Flow = Flows.Implicit,
 
-                AllowAccessToAllScopes = true
-            }
-        };
+                    RedirectUris = new List<string>
+                    {
+                        "https://localhost:44315/"
+                    },
+
+                    AllowAccessToAllScopes = true
+                }
+            };
+
+            return clients;
         }
     }
 }

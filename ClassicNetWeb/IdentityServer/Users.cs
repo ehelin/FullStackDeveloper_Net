@@ -9,21 +9,23 @@ namespace ClassicNetWeb.IdentityServer
     {
         public static List<InMemoryUser> Get()
         {
-            return new List<InMemoryUser>
-        {
-            new InMemoryUser
+            var users = new List<InMemoryUser>
             {
-                Username = "bob",
-                Password = "secret",
-                Subject = "1",
-
-                Claims = new[]
+                new InMemoryUser
                 {
-                    new Claim(Constants.ClaimTypes.GivenName, "Bob"),
-                    new Claim(Constants.ClaimTypes.FamilyName, "Smith")
+                    Username = "bob",
+                    Password = "secret",
+                    Subject = "1",
+
+                    Claims = new[]
+                    {
+                        new Claim(Constants.ClaimTypes.GivenName, "Bob"),
+                        new Claim(Constants.ClaimTypes.FamilyName, "Smith")
+                    }
                 }
-            }
-        };
+            };
+
+            return users;
         }
     }
 }
