@@ -4,7 +4,9 @@ using ClassicNetWeb.IdentityServer;
 using IdentityServer3.Core.Configuration;
 using IdentityServer3.Core.Models;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.Cookies;
 using Owin;
+using Microsoft.Owin.Security.OpenIdConnect;
 
 [assembly: OwinStartup(typeof(ClassicNetWeb.Startup))]
 
@@ -26,6 +28,21 @@ namespace ClassicNetWeb
                                 .UseInMemoryClients(Clients.Get())
                                 .UseInMemoryScopes(StandardScopes.All)
                 });
+            });
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = "Cookies"
+            });
+
+            app.UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions
+            {
+                Authority = "https://localhost:44315/identity",
+                ClientId = "mvc",
+                RedirectUri = "https://localhost:44315/",
+                ResponseType = "id_token",
+
+                SignInAsAuthenticationType = "Cookies"
             });
         }
 
