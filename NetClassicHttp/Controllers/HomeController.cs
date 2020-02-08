@@ -1,7 +1,5 @@
-﻿using System.Web.Mvc;
-using System;
-
-using System.Web.Http;
+﻿using System.Web.Http;
+using System.Web.Mvc;
 using NetClassicMvc = System.Web.Mvc;
 
 namespace NetClassicHttp.Controllers
