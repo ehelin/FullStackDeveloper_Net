@@ -15,11 +15,10 @@ These items are also related to this project.
 <a href="https://erichelin.wordpress.com/2018/05/07/full-stack-developer-part-3-the-api/">Basic API</a>,
 <a href="https://erichelin.wordpress.com/2018/05/08/full-stack-developer-part-4-1-the-basic-web-mvc-app/">basic MVC app</a>,
 <a href="https://erichelin.wordpress.com/2018/05/16/full-stack-developer-part-4-2-first-controller-model-view-hooked-up-to-web-api/">API partially connected</a>,
-<a href="https://erichelin.wordpress.com/2018/05/27/full-stack-developer-part-4-3-web-application-completely-hooked-up-to-api/">API completely hooked up</a> and
+<a href="https://erichelin.wordpress.com/2018/05/27/full-stack-developer-part-4-3-web-application-completely-hooked-up-to-api/">API completely hooked up</a>,
 <a href="https://erichelin.wordpress.com/2018/06/03/full-stack-developer-part-6-javascript-validation/">JavaScript validation</a>,
+<a href="https://erichelin.wordpress.com/2019/07/13/tgimba-net-core-pre-api-work/">TGIMBA Pre API work</a> and
+<a href="https://erichelin.wordpress.com/2020/02/08/http-did-you-know-i-didnt-til-i-tried/">Batch Delete</a>.
 
 ## How To Use
 Download the zip file, open up in Visual Studio, clean, restore packages, build and run.
-
-
-
